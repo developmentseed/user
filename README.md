@@ -31,6 +31,8 @@ User assumes an express server module `server` available that exposes a
     app.use(express.cookieDecoder());
     app.use(express.session({
         secret: require('crypto').createHash('md5').update(Math.random()).digest('hex')
+        // For tests set reapInterval to -1
+        , store: new express.session.MemoryStore({ reapInterval: -1 })
     }));
 
 ### 2 Define users
