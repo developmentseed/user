@@ -47,12 +47,7 @@ User assumes an express server module `server` available that exposes a
 2. use md5 function in user to generate password: `md5('cleartextpw' + <salt>)`
 3. add new user with key = name, name, salt and encrypted password.
 
-### 2 Expose request handlers
-
-    // Use user module's built in request handlers.
-    require('user').request_handlers();
-
-### 3 Go
+### 2 Go
 
 - Log in `login`
 - Log out `logout`
