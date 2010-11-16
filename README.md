@@ -26,7 +26,14 @@ User assumes an express server module `server` available that exposes a
 
 ## Usage
 
-### 1 Define users
+### 1 Configure session handling
+
+    app.use(express.cookieDecoder());
+    app.use(express.session({
+        secret: require('crypto').createHash('md5').update(Math.random()).digest('hex')
+    }));
+
+### 2 Define users
 
     var settings = {
         user: {
@@ -47,7 +54,7 @@ User assumes an express server module `server` available that exposes a
 2. use md5 function in user to generate password: `md5('cleartextpw' + <salt>)`
 3. add new user with key = name, name, salt and encrypted password.
 
-### 2 Go
+### 3 Go
 
 - Log in `login`
 - Log out `logout`
