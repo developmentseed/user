@@ -14,7 +14,7 @@ Add the following line to your ndistro file and rebuild:
     module developmentseed user
 
 User assumes an express server module `server` available that exposes a
-`users` object describing all available users (see usage)
+`users` object describing all allowed users (see usage)
 
     var users = require('server').set('settings')('users')
 
