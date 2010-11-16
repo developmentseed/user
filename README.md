@@ -1,4 +1,3 @@
-
 # User
 
 Rudimentary user system for Express + HBS.
@@ -58,8 +57,8 @@ User assumes an express server module `server` available that exposes a
 
 ### 3 Go
 
-- Log in `login`
-- Log out `logout`
+- Log in form `/login`
+- Log out `/logout`
 
 ## Todo
 
