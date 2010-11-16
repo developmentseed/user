@@ -29,13 +29,15 @@ User assumes an express server module `server` available that exposes a
 ### 1 Define users
 
     var settings = {
-        users: {
-            admin: {
-                name: 'admin',
-                salt: '722a058557b48a64343',
-                password: 'qbtNjBqo34N2UkvpgtEMFwAA3434f691'
+        user: {
+            users: {
+                admin: {
+                    name: 'admin',
+                    salt: '722a058557b48a64343',
+                    password: 'qbtNjBqo34N2UkvpgtEMFwAA3434f691'
+                }
             }
-        };
+        }
     };
     require('server').set('settings', function(id) { return settings[id]; });
 
