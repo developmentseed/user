@@ -12,10 +12,10 @@ Add the following line to your ndistro file and rebuild:
 
     module developmentseed user
 
-User assumes an express server module `server` available that exposes a
+User assumes that expresslane module is available and exposes a
 `users` object describing all allowed users (see usage)
 
-    var users = require('server').set('settings')('users')
+    var users = require('expresslane').app.set('settings')('user').users
 
 ## Requirements
 
@@ -36,7 +36,8 @@ User assumes an express server module `server` available that exposes a
 
 ### 2 Define users
 
-    var settings = {
+    // settings.js
+    module.exports = {
         user: {
             users: {
                 admin: {
@@ -47,7 +48,6 @@ User assumes an express server module `server` available that exposes a
             }
         }
     };
-    require('server').set('settings', function(id) { return settings[id]; });
 
 *Generating username and password*
 
