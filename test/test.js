@@ -14,30 +14,69 @@ module.exports = {
      * entry, view that entry then delete that entry.
      */
     'web': function(assert) {
+        var headers = {
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        };
+        // /user is protected, resulting in a redirect to /login.
+        assert.response(app, {
+            url: '/user',
+            method: 'GET',
+            headers: headers
+        }, {
+            status: 302
+        });
+
+        // Checks if username is wrong user is redirected to login page.
+        assert.response(app, {
+           url: '/login',
+           method: 'POST',
+           headers: headers,
+           data: 'name=wronguser&password=admin&login=Login'
+        }, {
+            body: /.*Unknown user.*/,
+            status: 200
+        });
+
+        // Checks if password is wrong user is redirected to login page.
+        assert.response(app, {
+           url: '/login',
+           method: 'POST',
+           headers: headers,
+           data: 'name=admin&password=wrongpassword&login=Login'
+        }, {
+            body: /.*Wrong password.*/,
+            status: 200
+        });
+
+        // Login.
         assert.response(app, {
             url: '/login',
             method: 'POST',
+            headers: headers,
             data: 'name=admin&password=admin&login=Login'
         }, function(res) {
-            // Stores the cookie header into reusable variable.
-            var cookie = res.headers['set-cookie'];
+            // Use cookie for subsequent responses.
+            headers = {
+                'Cookie': res.headers['set-cookie']
+            };
 
-            // Checks if username is wrong user is redirected to login page.
+            // Login should redirect to /user now.
             assert.response(app, {
-               url: '/login',
-               method: 'POST',
-               data: 'name=wronguser&password=admin&login=Login'
+                url: '/login',
+                method: 'GET',
+                headers: headers
             }, {
-                body: /.*Unknown user.*/
+                status: 302
             });
 
-            // Checks if password is wrong user is redirected to login page.
+            // User is accessible.
             assert.response(app, {
-               url: '/login',
-               method: 'POST',
-               data: 'name=admin&password=wrongpassword&login=Login'
+                url: '/user',
+                method: 'GET',
+                headers: headers
             }, {
-                body: /.*Wrong password.*/
+                body: /.*admin.*/,
+                status: 200
             });
         });
     }
