@@ -60,6 +60,15 @@ User assumes that expresslane module is available and exposes a
 - Log in form `/login`
 - Log out `/logout`
 
+## Testing
+
+There is an .ndistro file included describing user module's dependencies. To
+run tests change directory into user and execute:
+
+   cd user
+   ndistro
+   bin/expresso tests/test.js
+
 ## Todo
 
 Plenty.
