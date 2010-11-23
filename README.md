@@ -62,12 +62,11 @@ User assumes that expresslane module is available and exposes a
 
 ## Testing
 
-There is an .ndistro file included describing user module's dependencies. To
-run tests change directory into user and execute:
+To run tests execute the following commands:
 
-   cd user
+   cd user/test
    ndistro
-   bin/expresso tests/test.js
+   ./test
 
 ## Todo
 
