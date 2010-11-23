@@ -1,8 +1,12 @@
 require.paths.unshift(__dirname + '/../modules', __dirname + '/../lib/node', __dirname, __dirname + '/../lib');
 require.paths.unshift(__dirname + '/../modules/forms/lib'); // Hack for forms...
 
-var app = require('expresslane').configure(__dirname);
+var app = require('expresslane').configure();
 require('user');
+
+app.set('view options', {
+    layout: __dirname + '/layout'
+});
 
 // Generates a random number that is used to
 // ensure the entry created is unique.
@@ -10,21 +14,10 @@ var random = Math.floor(Math.random()*10000);
 
 module.exports = {
     /**
-     * Basic node stack test
-     */
-    'stack test': function(assert) {
-        // Check that node stack is setup properly.
-        assert.response(app, {
-            url: '/'
-        }, {
-            status: 200
-        });
-    },
-    /**
      * Logs in as a user attempts to create a new
      * entry, view that entry then delete that entry.
      */
-    'entry test': function(assert) {
+    'web': function(assert) {
         assert.response(app, {
             url: '/login',
             method: 'POST',
