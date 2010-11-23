@@ -62,8 +62,6 @@ User assumes that expresslane module is available and exposes a
 
 ## Testing
 
-To run tests execute the following commands:
-
     cd user/test
     ndistro
     bin/expresso test.js
