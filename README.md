@@ -66,7 +66,7 @@ To run tests execute the following commands:
 
    cd user/test
    ndistro
-   ./test
+   bin/expresso test.js
 
 ## Todo
 
