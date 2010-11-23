@@ -64,7 +64,7 @@ User assumes that expresslane module is available and exposes a
 
     cd user/test
     ndistro
-    bin/expresso test.js
+    tests
 
 ## Todo
 
