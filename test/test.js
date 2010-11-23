@@ -1,8 +1,8 @@
-require.paths.unshift(__dirname + '/../modules', __dirname + '/../lib/node', __dirname, __dirname + '/../lib');
-require.paths.unshift(__dirname + '/../modules/forms/lib'); // Hack for forms...
+// Make sure expresslane finds settings.js.
+require.paths.unshift(__dirname);
 
 var app = require('expresslane').configure();
-require('user');
+require('../lib/user');
 
 module.exports = {
     /**
