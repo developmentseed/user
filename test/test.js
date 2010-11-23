@@ -4,10 +4,6 @@ require.paths.unshift(__dirname + '/../modules/forms/lib'); // Hack for forms...
 var app = require('expresslane').configure();
 require('user');
 
-app.set('view options', {
-    layout: __dirname + '/layout'
-});
-
 // Generates a random number that is used to
 // ensure the entry created is unique.
 var random = Math.floor(Math.random()*10000);
