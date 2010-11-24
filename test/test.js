@@ -4,7 +4,7 @@
  */
 
 // Configure with local settings.
-var app = require('expresslane').configure('.');
+var app = require('expresslane').configure(__dirname);
 require('../lib/user');
 
 module.exports = {
