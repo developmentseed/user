@@ -9,10 +9,9 @@ require('../lib/user');
 
 module.exports = {
     /**
-     * Logs in as a user attempts to create a new
-     * entry, view that entry then delete that entry.
+     * Log in a user, log out a user. Access protected resources.
      */
-    'web': function(assert) {
+    'authenticate': function(assert) {
         var headers = {
             'Content-Type' : 'application/x-www-form-urlencoded'
         };
