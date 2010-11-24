@@ -1,7 +1,10 @@
-// Make sure expresslane finds settings.js.
-require.paths.unshift(__dirname);
+/**
+ * @fileoverview
+ * Basic tests for document module.
+ */
 
-var app = require('expresslane').configure();
+// Configure with local settings.
+var app = require('expresslane').configure(require('./settings'));
 require('../lib/user');
 
 module.exports = {
