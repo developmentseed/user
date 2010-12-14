@@ -31,7 +31,7 @@ module.exports = {
            headers: headers,
            data: 'name=wronguser&password=admin&login=Login'
         }, {
-            body: /.*Unknown user.*/,
+            body: /.*Invalid login credentials.*/,
             status: 200
         });
 
@@ -42,7 +42,7 @@ module.exports = {
            headers: headers,
            data: 'name=admin&password=wrongpassword&login=Login'
         }, {
-            body: /.*Wrong password.*/,
+            body: /.*Invalid login credentials.*/,
             status: 200
         });
 
