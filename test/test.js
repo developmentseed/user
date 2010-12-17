@@ -52,7 +52,7 @@ module.exports = {
             method: 'POST',
             headers: headers,
             data: 'name=admin&password=admin&login=Login'
-        }, function(res) {
+        }, {status: 302}, function(res) {
             // Use cookie for subsequent responses.
             headers = {
                 'Cookie': res.headers['set-cookie']
