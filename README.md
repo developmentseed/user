@@ -57,8 +57,17 @@ User assumes that expresslane module is available and exposes a
 
 ### 3 Go
 
-- Log in form `/login`
-- Log out `/logout`
+Log in
+
+    /login
+
+Log out
+
+    /logout
+
+Log in from command line
+
+    node myapp.js --user="Buster Keaton" --password=porkpie
 
 ## Testing
 
