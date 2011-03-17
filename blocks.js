@@ -9,6 +9,6 @@ expresslane.addMenuItem({
     href: 'logout',
     title: 'logout',
     class: ['right'],
-    weight: 1 
+    weight: 1
 });
 

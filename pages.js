@@ -46,10 +46,10 @@ app.use(function(req, res, next) {
         user.authenticate(userArgs.name, userArgs.password, req, function(err, user) {
             userArgs = null;
             if (err) {
-                console.log("Could not authenticate user - " + err.message);
+                console.log('Could not authenticate user - ' + err.message);
             }
             else {
-                console.log("Authenticated " + user.name);
+                console.log('Authenticated ' + user.name);
             }
         });
     }
