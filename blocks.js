@@ -1,21 +1,15 @@
 var user = require('user'),
-    app = require('expresslane').app;
+    expresslane = require('expresslane');
 
-app.get('/*', function(req, res, next) {
-    if (user.permission(req, 'manage data')) {
-      req.on('blocks:menu', function(blocks) {
-          blocks.push({
-              module: module.id,
-              delta: 'user-logout',
-              weight: 5,
-              content: function() {
-                  var locals = {};
-                  locals.path = '/logout';
-                  locals.title = 'logout';
-                  return locals;
-              }
-          });
-      });
-    };
-    next();
+
+expresslane.addMenuItem({
+    filter: function(req, res) {
+        return true;
+        //return user.permission(req, 'manage data');
+    },
+    href: 'logout',
+    title: 'logout',
+    class: ['right'],
+    weight: 1 
 });
+
