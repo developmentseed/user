@@ -6,7 +6,7 @@ expresslane.addMenuItem({
     filter: function(req, res) {
         return user.permission(req, 'manage data');
     },
-    href: 'logout',
+    href: '/logout',
     title: 'logout',
     class: ['right'],
     weight: 1
