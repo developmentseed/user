@@ -8,7 +8,7 @@ expresslane.addMenuItem({
     },
     href: '/logout',
     title: 'logout',
-    class: ['right'],
-    weight: 1
+    class: ['right', 'last'],
+    weight: -10 // right aligned means lighter is more to the right.
 });
 
