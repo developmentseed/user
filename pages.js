@@ -8,64 +8,7 @@ var app = require('expresslane').app,
     user = require('user'),
     forms = require('forms');
 
-/**
- * A user can be passed in as a command line argument, parse.
- */
-var userArgs = null;
 
-(function() {
-    for (var i = 0; i < process.argv.length; i++) {
-        if ('--user' == process.argv[i].substr(0, 6)) {
-            var name = process.argv[i].substr(7);
-        }
-        if ('--password' == process.argv[i].substr(0, 10)) {
-            var password = process.argv[i].substr(11);
-        }
-    }
-    if (name && password) {
-        userArgs = {name: name, password: password};
-    }
-})();
-
-/**
- * Removes Set-Cookie header from response if user is not authenticated.
- *
- * Suppress Set-Cookie on all pages but the login page when a user is not
- * authenticated. This allows for aggressive caching with reverse-proxies.
- * Due to connect's session.js setting headers very late, we have no other
- * choice than using regex to remove Set-Cookie.
- *
- * @see sessionSetup() in session.js.
- *
- * Related issue: https://github.com/senchalabs/connect/issues/issue/153
- */
-app.use(function(req, res, next) {
-    // If user is given through command line arguments, authenticate on first
-    // page request.
-    if (userArgs) {
-        user.authenticate(userArgs.name, userArgs.password, req, function(err, user) {
-            userArgs = null;
-            if (err) {
-                console.log('Could not authenticate user - ' + err.message);
-            }
-            else {
-                console.log('Authenticated ' + user.name);
-            }
-        });
-    }
-    else if (!req.session.user && req.url != '/login') {
-        var writeHead = res.writeHead;
-        res.writeHead = function(status, headers) {
-            res.writeHead = writeHead;
-            var result = res.writeHead(status, headers);
-            // Ouch.
-            delete headers['Set-Cookie'];
-            res._header = res._header.replace(/^Set-Cookie:.*?\r\n(.*)$/im, '$1');
-            return result;
-        };
-    }
-    next();
-});
 
 /**
  * Aggressive cache settings for authenticated users.
