@@ -24,29 +24,29 @@ app.use(function(req, res, next) {
 });
 
 /**
- * Handles get requests for login form
- */
-app.get('/login', user.forms.login.load(), function(req, res, next) {
-    if (user.authenticated(req)) {
-        res.redirect('/user');
-    }
-    else {
-        req.form.render(req, res, next);
-    }
-});
-
-/**
  * Handles post requests for login form
  */
 app.post('/login', user.forms.login.load(), function(req, res, next) {
-    if (user.authenticated(req)) {
-        res.redirect('/user');
+    if (!user.authenticated(req)) {
+        req.form.process(req, res, next);
     }
     else {
-        req.form.process(req, res, next);
+        res.redirect('/user');
     }
 });
 
+
+/**
+ * Handles get requests for login form
+ */
+app.get('/login', user.forms.login.load(), function(req, res, next) {
+    if (!user.authenticated(req)) {
+        req.form.render(req, res, next);
+    }
+    else {
+        res.redirect('/user');
+    }
+});
 
 /**
  * Sign out a user.

@@ -4,7 +4,7 @@ var user = require('user'),
 
 expresslane.addMenuItem({
     filter: function(req, res) {
-        return user.permission(req, 'manage data');
+        return user.authenticated(req);
     },
     href: '/logout',
     title: 'logout',
